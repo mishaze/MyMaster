@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">MyMaster</string>
+    <string name="app_in_name">My Master</string>
+    <string name="app_name_after">Register App</string>
+    <string name="text_bottom">Sign in</string>
+    <string name="btnSignIn">Sign In</string>
+    <string name="btnReg">Registration</string>
+</resources>
