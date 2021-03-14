@@ -23,6 +23,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.rengwuxian.materialedittext.MaterialEditText;
 
+
 public class MainActivity extends AppCompatActivity {
     FirebaseAuth auth;
     FirebaseDatabase db;
@@ -110,7 +111,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void showRegisterWindow() {
         AlertDialog.Builder dialog = new AlertDialog.Builder(this);
-        dialog.setTitle("Registration");
+        dialog.setTitle("Sign up");
         dialog.setMessage("Input all information for registration");
 
         LayoutInflater inflater = LayoutInflater.from(this);
@@ -158,7 +159,7 @@ public class MainActivity extends AppCompatActivity {
                                 user.setEmail(email.getText().toString());
                                 user.setName(name.getText().toString());
                                 user.setPhone(phone.getText().toString());
-                                user.setPass(pass.getText().toString());
+                                //user.setPass(pass.getText().toString());
                                 //add in DataBase
                                 users.child(FirebaseAuth.getInstance().getCurrentUser().getUid())
                                         .setValue(user)

@@ -1,7 +1,8 @@
 package com.example.mymaster.Models;
 
 public class User {
-    private String name, email, pass, phone;
+    private String name, email,  phone;
+
 
     public User() {
     }
@@ -9,7 +10,7 @@ public class User {
     public User(String name, String email, String pass, String phone) {
         this.name = name;
         this.email = email;
-        this.pass = pass;
+        //this.pass = pass;
         this.phone = phone;
     }
 
@@ -29,13 +30,13 @@ public class User {
         this.email = email;
     }
 
-    public String getPass() {
-        return pass;
-    }
+   // public String getPass() {
+     //   return pass;
+    //}
 
-    public void setPass(String pass) {
-        this.pass = pass;
-    }
+    //public void setPass(String pass) {
+       // this.pass = pass;
+    //}
 
     public String getPhone() {
         return phone;
