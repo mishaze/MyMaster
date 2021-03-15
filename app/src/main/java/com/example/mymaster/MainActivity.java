@@ -95,7 +95,7 @@ public class MainActivity extends AppCompatActivity {
                         .addOnSuccessListener(new OnSuccessListener<AuthResult>() {
                             @Override
                             public void onSuccess(AuthResult authResult) {
-                                startActivity(new Intent(MainActivity.this, MapActivity.class));
+                                startActivity(new Intent(MainActivity.this, MainMenu.class));
                                 finish();
                             }
                         }).addOnFailureListener(new OnFailureListener() {
