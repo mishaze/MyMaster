@@ -67,7 +67,7 @@
             app:met_singleLineEllipsis="true"
             />
 
-        <com.rengwuxian.materialedittext.MaterialEditText
+      <!--  <com.rengwuxian.materialedittext.MaterialEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/phoneField"
@@ -83,7 +83,7 @@
             app:met_primaryColor="#982360"
             app:met_errorColor="#ddaa00"
             app:met_singleLineEllipsis="true"
-            />
+            />-->
 
     </LinearLayout>
 </androidx.cardview.widget.CardView>

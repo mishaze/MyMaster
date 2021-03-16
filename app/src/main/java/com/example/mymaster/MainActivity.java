@@ -13,6 +13,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.RelativeLayout;
 
+import com.example.mymaster.Models.Clients;
+import com.example.mymaster.Models.Friends;
+import com.example.mymaster.Models.RecordingSession;
 import com.example.mymaster.Models.User;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -27,7 +30,7 @@ import com.rengwuxian.materialedittext.MaterialEditText;
 public class MainActivity extends AppCompatActivity {
     FirebaseAuth auth;
     FirebaseDatabase db;
-    DatabaseReference users;
+    DatabaseReference masters;
 
     Button btnSignIn, btnReg;
     RelativeLayout root;
@@ -43,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
 
         auth = FirebaseAuth.getInstance();
         db = FirebaseDatabase.getInstance();
-        users = db.getReference("Users");
+        masters = db.getReference("Masters");
 
         btnReg.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -91,7 +94,7 @@ public class MainActivity extends AppCompatActivity {
                     return;
                 }
 
-                auth.signInWithEmailAndPassword(email.getText().toString(),pass.getText().toString())
+                auth.signInWithEmailAndPassword(email.getText().toString(), pass.getText().toString())
                         .addOnSuccessListener(new OnSuccessListener<AuthResult>() {
                             @Override
                             public void onSuccess(AuthResult authResult) {
@@ -101,7 +104,7 @@ public class MainActivity extends AppCompatActivity {
                         }).addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
-                        Snackbar.make(root, "Error"+e.getMessage(),Snackbar.LENGTH_SHORT).show();
+                        Snackbar.make(root, "Error" + e.getMessage(), Snackbar.LENGTH_SHORT).show();
                     }
                 });
             }
@@ -121,7 +124,7 @@ public class MainActivity extends AppCompatActivity {
         final MaterialEditText email = activity_reg.findViewById(R.id.emailField);
         final MaterialEditText pass = activity_reg.findViewById(R.id.passField);
         final MaterialEditText name = activity_reg.findViewById(R.id.nameField);
-        final MaterialEditText phone = activity_reg.findViewById(R.id.phoneField);
+        //final MaterialEditText phone = activity_reg.findViewById(R.id.phoneField);
 
         dialog.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
             @Override
@@ -141,32 +144,32 @@ public class MainActivity extends AppCompatActivity {
                     Snackbar.make(root, "input name", Snackbar.LENGTH_SHORT).show();
                     return;
                 }
-                if (TextUtils.isEmpty(phone.getText().toString())) {
-                    Snackbar.make(root, "input phone", Snackbar.LENGTH_SHORT).show();
-                    return;
-                }
+                //if (TextUtils.isEmpty(phone.getText().toString())) {
+                //Snackbar.make(root, "input phone", Snackbar.LENGTH_SHORT).show();
+                // return;
+                // }
                 if (pass.getText().toString().length() < 5) {
                     Snackbar.make(root, "error password", Snackbar.LENGTH_SHORT).show();
                     return;
                 }
 
                 //registration users
-                auth.createUserWithEmailAndPassword(email.getText().toString(),pass.getText().toString())
+                auth.createUserWithEmailAndPassword(email.getText().toString(), pass.getText().toString())
                         .addOnSuccessListener(new OnSuccessListener<AuthResult>() {
                             @Override
                             public void onSuccess(AuthResult authResult) {
                                 User user = new User();
                                 user.setEmail(email.getText().toString());
-                                user.setName(name.getText().toString());
-                                user.setPhone(phone.getText().toString());
+                                user.setFirst_name(name.getText().toString());
+                                //user.setPhone(phone.getText().toString());
                                 //user.setPass(pass.getText().toString());
                                 //add in DataBase
-                                users.child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                                masters.child(FirebaseAuth.getInstance().getCurrentUser().getUid())
                                         .setValue(user)
                                         .addOnSuccessListener(new OnSuccessListener<Void>() {
                                             @Override
                                             public void onSuccess(Void aVoid) {
-                                                Snackbar.make(root,"User add",Snackbar.LENGTH_SHORT).show();
+                                                Snackbar.make(root, "User add", Snackbar.LENGTH_SHORT).show();
                                             }
                                         });
                             }
