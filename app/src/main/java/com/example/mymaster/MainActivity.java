@@ -26,12 +26,13 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.rengwuxian.materialedittext.MaterialEditText;
 
+import java.util.Calendar;
+
 
 public class MainActivity extends AppCompatActivity {
     FirebaseAuth auth;
     FirebaseDatabase db;
-    DatabaseReference masters;
-
+    DatabaseReference masters,mDatabase;
     Button btnSignIn, btnReg;
     RelativeLayout root;
 

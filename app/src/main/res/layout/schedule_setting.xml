@@ -1,0 +1,255 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ScheduleSettingActivity"
+    android:padding="15dp">
+
+    <LinearLayout android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="5dp">
+
+        <TextView
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:text="@string/monday"
+            android:id="@+id/sch_day1"
+            android:textSize="20sp"/>
+
+        <TextView
+
+            android:id="@+id/sch_from1"
+            android:layout_width="70dp"
+            android:layout_height="wrap_content"
+            android:text="@string/eight_am"
+            android:textSize="20sp"/>
+        <TextView
+            android:layout_width="70dp"
+            android:layout_height="wrap_content"
+            android:text="@string/four_pm"
+            android:id="@+id/sch_to1"
+            android:textSize="20sp"/>
+
+        <CheckBox
+            android:id="@+id/sch_enable1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15sp"/>
+
+    </LinearLayout>
+    <LinearLayout android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="5dp">
+        <TextView
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:text="@string/tuesday"
+            android:id="@+id/sch_day2"
+            android:textSize="20sp"/>
+        <TextView
+            android:layout_width="70dp"
+            android:layout_height="wrap_content"
+            android:text="@string/eight_am"
+            android:id="@+id/sch_from2"
+            android:textSize="20sp"/>
+        <TextView
+            android:layout_width="70dp"
+            android:layout_height="wrap_content"
+            android:text="@string/four_pm"
+            android:id="@+id/sch_to2"
+            android:textSize="20sp"/>
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/sch_enable2"
+            android:layout_marginStart="15sp"/>
+
+    </LinearLayout>
+    <LinearLayout android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="5dp">
+        <TextView
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:text="@string/wednesday"
+            android:id="@+id/sch_day3"
+            android:textSize="20sp"/>
+        <TextView
+            android:layout_width="70dp"
+            android:layout_height="wrap_content"
+            android:text="@string/eight_am"
+            android:id="@+id/sch_from3"
+            android:textSize="20sp"/>
+        <TextView
+            android:layout_width="70dp"
+            android:layout_height="wrap_content"
+            android:text="@string/four_pm"
+            android:id="@+id/sch_to3"
+            android:textSize="20sp"/>
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/sch_enable3"
+            android:layout_marginStart="15sp"/>
+
+    </LinearLayout>
+    <LinearLayout android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="5dp">
+        <TextView
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:text="@string/thursday"
+            android:id="@+id/sch_day4"
+            android:textSize="20sp"/>
+        <TextView
+            android:layout_width="70dp"
+            android:layout_height="wrap_content"
+            android:text="@string/eight_am"
+            android:id="@+id/sch_from4"
+            android:textSize="20sp"/>
+        <TextView
+            android:layout_width="70dp"
+            android:layout_height="wrap_content"
+            android:text="@string/four_pm"
+            android:id="@+id/sch_to4"
+            android:textSize="20sp"/>
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/sch_enable4"
+            android:layout_marginStart="15sp"/>
+
+    </LinearLayout>
+    <LinearLayout android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="5dp">
+        <TextView
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:text="@string/friday"
+            android:id="@+id/sch_day5"
+            android:textSize="20sp"/>
+        <TextView
+            android:layout_width="70dp"
+            android:layout_height="wrap_content"
+            android:text="@string/eight_am"
+            android:id="@+id/sch_from5"
+            android:textSize="20sp"/>
+        <TextView
+            android:layout_width="70dp"
+            android:layout_height="wrap_content"
+            android:text="@string/four_pm"
+            android:id="@+id/sch_to5"
+            android:textSize="20sp"/>
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/sch_enable5"
+            android:layout_marginStart="15sp"/>
+
+    </LinearLayout>
+    <LinearLayout android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="5dp">
+        <TextView
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:text="@string/saturday"
+            android:id="@+id/sch_day6"
+            android:textSize="20sp"/>
+        <TextView
+            android:layout_width="70dp"
+            android:layout_height="wrap_content"
+            android:text="@string/eight_am"
+            android:id="@+id/sch_from6"
+            android:textSize="20sp"/>
+        <TextView
+            android:layout_width="70dp"
+            android:layout_height="wrap_content"
+            android:text="@string/four_pm"
+            android:id="@+id/sch_to6"
+            android:textSize="20sp"/>
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/sch_enable6"
+            android:layout_marginStart="15sp"/>
+
+    </LinearLayout>
+
+    <LinearLayout android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="5dp">
+        <TextView
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:text="@string/sunday"
+            android:id="@+id/sch_day7"
+            android:textSize="20sp"/>
+        <TextView
+            android:layout_width="70dp"
+            android:layout_height="wrap_content"
+            android:text="@string/eight_am"
+            android:id="@+id/sch_from7"
+            android:textSize="20sp"/>
+        <TextView
+            android:layout_width="70dp"
+            android:layout_height="wrap_content"
+            android:text="@string/four_pm"
+            android:id="@+id/sch_to7"
+            android:textSize="20sp"/>
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/sch_enable7"
+            android:layout_marginStart="15sp"/>
+
+    </LinearLayout>
+
+    <LinearLayout android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="30dp">
+
+        <TextView
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:text="Период"
+            android:id="@+id/sch_data"
+            android:textSize="20sp"
+            tools:ignore="HardcodedText" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="с 01.01.1970"
+            android:id="@+id/sch_data_from"
+            android:textSize="20sp"
+            tools:ignore="HardcodedText" />
+        <TextView
+            android:paddingStart="15sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="до 01.01.1970"
+            android:id="@+id/sch_data_to"
+            android:textSize="20sp"
+            tools:ignore="HardcodedText,RtlSymmetry" />
+
+    </LinearLayout>
+    <Button
+        android:layout_marginTop="50dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="SAVE"
+        android:textSize="25sp"
+        android:background="@color/colorPrimary"
+        android:textColor="@android:color/white"/>
+</LinearLayout>

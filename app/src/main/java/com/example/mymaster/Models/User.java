@@ -1,7 +1,8 @@
 package com.example.mymaster.Models;
-
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import java.util.ArrayList;
-import java.util.List;
+
 
 public class User {
     private String
@@ -12,10 +13,20 @@ public class User {
             address ="unknown",
             info ="unknown";
     private boolean is_master;
+
     ArrayList<String> List_services = new ArrayList<>();
-    Schedule schedule = new Schedule();
-        public User() {
+    ArrayList<Schedule> schedule = new ArrayList<>();
+
+    public User() {
         List_services.add("un");
+
+        schedule.add(new Schedule());
+        schedule.add(new Schedule());
+        schedule.add(new Schedule());
+        schedule.add(new Schedule());
+        schedule.add(new Schedule());
+        schedule.add(new Schedule());
+        schedule.add(new Schedule());
     }
 
     public User(String name, String email, String pass, String phone) {
@@ -92,11 +103,11 @@ public class User {
         return List_services;
     }
 
-    public void setSchedule(Schedule schedule) {
-        this.schedule = schedule;
+    public ArrayList<Schedule> getSchedule() {
+        return schedule;
     }
 
-    public Schedule getSchedule() {
-        return schedule;
+    public void setSchedule(ArrayList<Schedule> schedule) {
+        this.schedule = schedule;
     }
 }
