@@ -7,10 +7,10 @@ import java.util.ArrayList;
 public class Schedule {
     private int time_start = -1, time_finish = -1;
 
-    Schedule() {
+   public Schedule() {
     }
 
-    Schedule(int start, int finish) {
+   public Schedule(int start, int finish) {
         setTime_start(start);
         setTime_finish(finish);
     }

@@ -3,7 +3,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import java.util.ArrayList;
 
-
 public class User {
     private String
             first_name ="unknown",
@@ -12,7 +11,6 @@ public class User {
             phone ="unknown",
             address ="unknown",
             info ="unknown";
-    private boolean is_master;
 
     ArrayList<String> List_services = new ArrayList<>();
     ArrayList<Schedule> schedule = new ArrayList<>();
@@ -52,7 +50,6 @@ public class User {
         return first_name;
     }
 
-
     public String getInfo() {
         return info;
     }
@@ -81,18 +78,8 @@ public class User {
         this.info = info;
     }
 
-    public void setIs_master(boolean is_master) {
-        this.is_master = is_master;
-    }
-
-
-
     public void setSecond_name(String second_name) {
         this.second_name = second_name;
-    }
-
-    public boolean isIs_master() {
-        return is_master;
     }
 
     public void setList_services(ArrayList<String> list_services) {

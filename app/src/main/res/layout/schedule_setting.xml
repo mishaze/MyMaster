@@ -4,6 +4,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".ScheduleSettingActivity"
+    android:id="@+id/root_sch_set"
     android:padding="15dp">
 
     <LinearLayout android:layout_width="match_parent"
@@ -245,6 +246,7 @@
 
     </LinearLayout>
     <Button
+        android:id="@+id/btn_sch_Save"
         android:layout_marginTop="50dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
