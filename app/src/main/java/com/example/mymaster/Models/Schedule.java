@@ -5,14 +5,24 @@ import java.util.ArrayList;
 
 
 public class Schedule {
-    private int time_start = -1, time_finish = -1;
+    private int time_start = 1, time_finish = 1;
+    boolean isEnable = false;
 
    public Schedule() {
     }
 
-   public Schedule(int start, int finish) {
+    public Schedule(int start, int finish, boolean isEnable) {
         setTime_start(start);
         setTime_finish(finish);
+        setEnable(isEnable);
+    }
+
+    public boolean isEnable() {
+        return isEnable;
+    }
+
+    public void setEnable(boolean enable) {
+        isEnable = enable;
     }
 
     public int getTime_start() {
