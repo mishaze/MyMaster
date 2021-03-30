@@ -1,6 +1,8 @@
 # MyMaster
 
-Приложение для мастера 
-
-реализовано: регистрация и аутентификация 
-             главное меню
+#TODO
+<ul>
+ <li>Services list</li>
+ <li>Clients</li>
+ <li>ScheduleAdapter</li>
+</ul>
