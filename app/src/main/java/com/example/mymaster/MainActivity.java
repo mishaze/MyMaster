@@ -162,6 +162,7 @@ public class MainActivity extends AppCompatActivity {
                                 User user = new User();
                                 user.setEmail(email.getText().toString());
                                 user.setFirst_name(name.getText().toString());
+                                user.setUid(FirebaseAuth.getInstance().getUid());
                                 //user.setPhone(phone.getText().toString());
                                 //user.setPass(pass.getText().toString());
                                 //add in DataBase

@@ -2,38 +2,41 @@ package com.example.mymaster.Models;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class User {
-    private String
-            first_name ="unknown",
-            second_name ="unknown",
-            email ="unknown",
-            phone ="unknown",
-            address ="unknown",
-            info ="unknown";
 
+
+    private String first_name ="";
+    private String second_name ="";
+    private String email ="";
+    private String phone ="";
+    private String address ="";
+    private String info ="";
+
+    ArrayList<String> friends = new ArrayList<>();
     ArrayList<String> List_services = new ArrayList<>();
     ArrayList<Schedule> schedule = new ArrayList<>();
 
     public User() {
-        List_services.add("un");
-
-        schedule.add(new Schedule());
-        schedule.add(new Schedule());
-        schedule.add(new Schedule());
-        schedule.add(new Schedule());
-        schedule.add(new Schedule());
-        schedule.add(new Schedule());
-        schedule.add(new Schedule());
     }
 
     public User(String name, String email, String pass, String phone) {
         this.first_name = name;
         this.email = email;
-        //this.pass = pass;
         this.phone = phone;
     }
 
+    private String
+            uid="";
+
+    public String getUid() {
+        return uid;
+    }
+
+    public void setUid(String uid) {
+        this.uid = uid;
+    }
     public String getAddress() {
         return address;
     }
@@ -96,5 +99,26 @@ public class User {
 
     public void setSchedule(ArrayList<Schedule> schedule) {
         this.schedule = schedule;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        User user = (User) o;
+        return Objects.equals(uid, user.uid) &&
+                Objects.equals(first_name, user.first_name) &&
+                Objects.equals(second_name, user.second_name) &&
+                Objects.equals(email, user.email) &&
+                Objects.equals(phone, user.phone) &&
+                Objects.equals(address, user.address) &&
+                Objects.equals(info, user.info) &&
+                Objects.equals(List_services, user.List_services) &&
+                Objects.equals(schedule, user.schedule);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(uid, first_name, second_name, email, phone, address, info, List_services, schedule);
     }
 }

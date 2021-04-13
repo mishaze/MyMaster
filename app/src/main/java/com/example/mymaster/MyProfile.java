@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -55,7 +56,7 @@ public class MyProfile extends AppCompatActivity {
                             .child("first_name")
                             .setValue(firstName.getText().toString());
                 } else {
-                    Toast.makeText(MyProfile.this,"Не верный Имени",Toast.LENGTH_LONG).show();
+                    Toast.makeText(MyProfile.this,"Не верно введено имя",Toast.LENGTH_LONG).show();
                 }
 
                 mDatabase.child(FirebaseAuth.getInstance().getCurrentUser().getUid())
@@ -77,6 +78,14 @@ public class MyProfile extends AppCompatActivity {
                         .setValue(info.getText().toString());
 
                 viewUserInfo();
+            }
+        });
+
+        services.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(MyProfile.this, ServicesActivity.class));
+
             }
         });
     }

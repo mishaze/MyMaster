@@ -10,6 +10,11 @@
     <string name="profile">Мой профиль</string>
     <string name="settings">Настройки</string>
     <string name="help">Помощь</string>
+    <string name="name_services">Название услуги</string>
+    <string name="time_services">Время</string>
+    <string name="price_services">Цена</string>
+
+
     <string name="title_activity_main2">MainActivity</string>
     <!-- Strings used for fragments for navigation -->
     <string name="first_fragment_label">First Fragment</string>
@@ -57,4 +62,6 @@
     <string name="attachment_summary_on">Automatically download attachments for incoming emails
     </string>
     <string name="attachment_summary_off">Only download attachments when manually requested</string>
+    <string name="title_activity_friend">FriendActivity</string>
+
 </resources>

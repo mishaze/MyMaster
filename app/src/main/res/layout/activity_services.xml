@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ServicesActivity">
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_centerHorizontal="true"
+    android:layout_marginTop="30dp"
+    android:layout_marginBottom="30dp"
+    android:orientation="vertical">
+
+    <EditText
+        android:id="@+id/ser_name1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/name_services"
+        android:maxLength="40"
+        android:inputType="text"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <EditText
+            android:id="@+id/ser_price1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="@string/price_services"
+            android:maxLength="5"
+            android:inputType="number"/>
+        <EditText
+            android:id="@+id/ser_time1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="@string/time_services"
+            android:maxLength="3"
+            android:inputType="number"/>
+
+    </LinearLayout>
+
+    <EditText
+        android:id="@+id/ser_name2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/name_services"
+        android:layout_marginTop="30dp"
+        android:maxLength="40"
+        android:inputType="text"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <EditText
+            android:id="@+id/ser_price2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="@string/price_services"
+            android:maxLength="5"
+            android:inputType="number"/>
+        <EditText
+            android:id="@+id/ser_time2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="@string/time_services"
+            android:maxLength="3"
+            android:inputType="number"/>
+
+    </LinearLayout>
+
+    <EditText
+        android:id="@+id/ser_name3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/name_services"
+        android:layout_marginTop="30dp"
+        android:maxLength="40"
+        android:inputType="text"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <EditText
+            android:id="@+id/ser_price3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="@string/price_services"
+            android:maxLength="5"
+            android:inputType="number"/>
+        <EditText
+            android:id="@+id/ser_time3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="@string/time_services"
+            android:maxLength="3"
+            android:inputType="number"/>
+
+    </LinearLayout>
+
+    <EditText
+        android:id="@+id/ser_name4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/name_services"
+        android:layout_marginTop="30dp"
+        android:maxLength="40"
+        android:inputType="text"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <EditText
+            android:id="@+id/ser_price4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="@string/price_services"
+            android:maxLength="5"
+            android:inputType="number"/>
+        <EditText
+            android:id="@+id/ser_time4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="@string/time_services"
+            android:maxLength="3"
+            android:inputType="number"/>
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/ser_btn_save"
+        android:layout_marginTop="60dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/btn_rounded_corner"
+        android:text="сохранить"
+        android:textColor="@android:color/white"
+        android:textSize="20sp"/>
+</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

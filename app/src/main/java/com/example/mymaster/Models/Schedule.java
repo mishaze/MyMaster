@@ -2,13 +2,29 @@ package com.example.mymaster.Models;
 
 import android.util.Pair;
 import java.util.ArrayList;
+import java.util.Objects;
 
 
 public class Schedule {
     private int time_start = 1, time_finish = 1;
     boolean isEnable = false;
 
-   public Schedule() {
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Schedule schedule = (Schedule) o;
+        return time_start == schedule.time_start &&
+                time_finish == schedule.time_finish &&
+                isEnable == schedule.isEnable;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(time_start, time_finish, isEnable);
+    }
+
+    public Schedule() {
     }
 
     public Schedule(int start, int finish, boolean isEnable) {

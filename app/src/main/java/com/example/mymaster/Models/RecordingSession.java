@@ -1,9 +1,9 @@
 package com.example.mymaster.Models;
 
 public class RecordingSession {
-    private String id_friends = "unknown",
-                    service = "unknown",
-                    date = "unknown";
+    private String id_friends = "",
+                    service = "",
+                    date = "";
 
     private boolean is_comlete;
 

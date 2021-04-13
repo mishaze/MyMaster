@@ -17,14 +17,18 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.mymaster.Models.Schedule;
+import com.example.mymaster.Models.User;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
@@ -40,6 +44,7 @@ public class ScheduleSettingActivity extends AppCompatActivity {
     int mHour = cal.get(Calendar.HOUR_OF_DAY);
     int mMinute = cal.get(Calendar.MINUTE);
     private DatabaseReference mDatabase;
+    FirebaseUser user;
 
     ArrayList<TextView> textViews = new ArrayList<>();
     ArrayList<Schedule> schedule = new ArrayList<>();
@@ -85,9 +90,27 @@ public class ScheduleSettingActivity extends AppCompatActivity {
         dateFrom = findViewById(R.id.sch_data_from);
         dateTo = findViewById(R.id.sch_data_to);
 
-        viewUserInfo();
+        final ValueEventListener postListener = new ValueEventListener(){
 
-        sleep(50);
+            int i = 0;
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for(DataSnapshot ds : snapshot.child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("schedule").getChildren())
+                {
+                    Schedule sch = ds.getValue(Schedule.class);
+                    textViews.get(i).setText(timeUnParse(sch.getTime_start()));
+                    textViews.get(i+7).setText(timeUnParse(sch.getTime_finish()));
+                    checkBoxes.get(i).setChecked(sch.isEnable());
+                    i++;
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+            }
+        };
+
+        mDatabase.addValueEventListener(postListener);
 
         onClickDate(dateFrom);
         onClickDate(dateTo);
@@ -100,6 +123,7 @@ public class ScheduleSettingActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 setTime(textViews, checkBoxes);
+                mDatabase.removeEventListener(postListener);
                 mDatabase.child(FirebaseAuth.getInstance().getCurrentUser().getUid())
                         .child("schedule")
                         .setValue(schedule).addOnSuccessListener(new OnSuccessListener<Void>() {
@@ -189,21 +213,20 @@ public class ScheduleSettingActivity extends AppCompatActivity {
         return time;
     }
 
-    private void viewUserInfo() {
+
+
+
+    private void viewUserInf() {
+
         for (int i = 0; i <= 6; i++) {
             final int finalI = i;
 
             mDatabase.child(FirebaseAuth.getInstance().getCurrentUser().getUid())
                     .child("schedule")
-                    .child(String.valueOf(i))
-                    .child("time_start")
                     .get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
                 @Override
                 public void onComplete(@NonNull Task<DataSnapshot> task) {
-                    int temp = 0;
-                    temp = Integer.parseInt(task.getResult().getValue().toString());//-24*60* finalI;
 
-                    textViews.get(finalI).setText(timeUnParse(temp));
                 }
             });
 

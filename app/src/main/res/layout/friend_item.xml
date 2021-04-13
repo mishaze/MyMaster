@@ -17,50 +17,49 @@
         android:paddingHorizontal="6dp"
         android:paddingVertical="15dp">
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/sch_item_time_strt"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="00:00"
-                android:textAlignment="center"
-                android:textColor="@android:color/black"
-                android:textSize="25sp" />
-
-            <TextView
-                android:id="@+id/sch_item_time_end"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="до 00:00"
-                android:textAlignment="center"
-                android:textColor="@android:color/black"
-                android:textSize="15sp" />
-        </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
             android:paddingStart="25dp">
-
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
             <TextView
-                android:id="@+id/sch_item_name"
+                android:id="@+id/fri_item_first_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Фамилия Имя"
+                android:text="Имя"
                 android:textColor="@android:color/black"
                 android:textSize="25sp" />
 
+                <TextView
+                    android:layout_marginLeft="15dp"
+                    android:id="@+id/fri_item_second_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Фамилия"
+                    android:textColor="@android:color/black"
+                    android:textSize="25sp" />
+            </LinearLayout>
+
             <TextView
-                android:id="@+id/sch_item_services"
+                android:id="@+id/fri_item_phone"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="вид услуги"
+                android:text="00000000000"
+                android:textAlignment="center"
+                android:textColor="@android:color/black"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/fri_item_email"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="email@com.com"
                 android:textAlignment="center"
                 android:textColor="@android:color/black"
                 android:textSize="15sp" />

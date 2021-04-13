@@ -1,13 +1,22 @@
 package com.example.mymaster.Models;
 
+import java.util.Objects;
+
 public class Clients {
     private String
-            first_name = "unknown",
-            second_name = "unknown",
-            email = "unknown",
-            phone = "unknown";
+            first_name = "",
+            second_name = "",
+            email = "",
+            phone = "";
 
     public Clients() {
+    }
+
+    public Clients(String first_name, String second_name, String email, String phone) {
+        this.first_name = first_name;
+        this.second_name = second_name;
+        this.email = email;
+        this.phone = phone;
     }
 
     public String getFirst_name() {
@@ -40,5 +49,21 @@ public class Clients {
 
     public void setPhone(String phone) {
         this.phone = phone;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Clients clients = (Clients) o;
+        return Objects.equals(first_name, clients.first_name) &&
+                Objects.equals(second_name, clients.second_name) &&
+                Objects.equals(email, clients.email) &&
+                Objects.equals(phone, clients.phone);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(first_name, second_name, email, phone);
     }
 }

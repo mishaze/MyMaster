@@ -2,8 +2,8 @@ package com.example.mymaster.Models;
 
 public class Friends {
     private String
-            id_master = "unknown",
-            id_client = "unknown";
+            id_master = "",
+            id_client = "";
 
     public Friends() {
     }
