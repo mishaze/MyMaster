@@ -212,10 +212,7 @@ public class ScheduleSettingActivity extends AppCompatActivity {
         }
         return time;
     }
-
-
-
-
+    
     private void viewUserInf() {
 
         for (int i = 0; i <= 6; i++) {

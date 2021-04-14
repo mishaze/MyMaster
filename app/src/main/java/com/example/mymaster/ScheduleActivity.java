@@ -73,4 +73,8 @@ public class ScheduleActivity extends AppCompatActivity {
             return this.items.size();
         }
     }
+
+
+    //TODO получение из базы списка записей
+
 }

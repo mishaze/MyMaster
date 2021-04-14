@@ -18,6 +18,14 @@ public class User {
     ArrayList<String> List_services = new ArrayList<>();
     ArrayList<Schedule> schedule = new ArrayList<>();
 
+    public ArrayList<String> getFriends() {
+        return friends;
+    }
+
+    public void setFriends(ArrayList<String> friends) {
+        this.friends = friends;
+    }
+
     public User() {
     }
 

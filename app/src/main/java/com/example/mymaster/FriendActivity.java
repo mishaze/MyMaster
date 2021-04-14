@@ -1,5 +1,6 @@
 package com.example.mymaster;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.example.mymaster.Models.Clients;
@@ -39,8 +40,7 @@ public class FriendActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                startActivity(new Intent(FriendActivity.this, AddFriend.class));
             }
         });
     }
