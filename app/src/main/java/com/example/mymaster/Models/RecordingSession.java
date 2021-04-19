@@ -4,6 +4,7 @@ public class RecordingSession {
     private String id_friends = "",
                     service = "",
                     date = "";
+    
 
     private boolean is_comlete;
 
