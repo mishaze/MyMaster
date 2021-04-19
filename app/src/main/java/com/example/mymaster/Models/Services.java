@@ -1,7 +1,11 @@
 package com.example.mymaster.Models;
 
+import java.util.Objects;
+
 public class Services {
-    String name,time,price;
+    String name ,
+            time ,
+            price ;
 
 
     public Services() {
@@ -35,5 +39,20 @@ public class Services {
 
     public void setPrice(String price) {
         this.price = price;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Services services = (Services) o;
+        return Objects.equals(name, services.name) &&
+                Objects.equals(time, services.time) &&
+                Objects.equals(price, services.price);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, time, price);
     }
 }

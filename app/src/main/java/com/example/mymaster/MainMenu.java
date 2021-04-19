@@ -3,14 +3,14 @@ package com.example.mymaster;
 import android.content.Intent;
 import android.os.Bundle;
 
-import com.example.mymaster.Models.Schedule;
+import com.example.mymaster.Friend.FriendActivity;
+import com.example.mymaster.Myprofile.MyProfile;
+import com.example.mymaster.Schedule.ScheduleActivity;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
-
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import android.widget.Button;
-
 import android.view.View;
 
 
@@ -64,6 +64,13 @@ public class MainMenu extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(MainMenu.this, MyProfile.class));
+            }
+        });
+
+        btnHelp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(MainMenu.this, RecordingActivity.class));
             }
         });
     }

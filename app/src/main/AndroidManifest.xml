@@ -13,19 +13,26 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="AllowBackup">
-        <activity android:name=".AddFriend"></activity>
         <activity
-            android:name=".FriendActivity"
+            android:name=".ServicesListActivity"
+            android:label="@string/title_activity_services_list"
+            android:theme="@style/AppTheme.NoActionBar">
+
+        </activity>
+        <activity android:name=".Friend.AddFriend" />
+        <activity
+            android:name=".Friend.FriendActivity"
             android:label="@string/title_activity_friend"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".ServicesActivity" />
-        <activity android:name=".MyProfile" />
+        <activity android:name=".Myprofile.ServicesActivity" />
+        <activity android:name=".Myprofile.MyProfile" />
+        <activity android:name=".RecordingActivity"/>
         <activity
             android:name=".SettingsActivity"
             android:label="@string/title_activity_settings" />
-        <activity android:name=".ScheduleSettingActivity" />
+        <activity android:name=".Schedule.ScheduleSettingActivity" />
         <activity
-            android:name=".ScheduleActivity"
+            android:name=".Schedule.ScheduleActivity"
             android:theme="@style/AppTheme" />
         <activity
             android:name=".MainMenu"

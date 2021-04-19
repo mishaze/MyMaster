@@ -1,16 +1,14 @@
-package com.example.mymaster;
-
+package com.example.mymaster.Friend;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.gms.tasks.OnSuccessListener;
+import com.example.mymaster.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -18,6 +16,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+
+import java.util.Objects;
 
 public class AddFriend extends AppCompatActivity {
 
@@ -36,7 +36,7 @@ public class AddFriend extends AppCompatActivity {
         friend = findViewById(R.id.Uid_friend);
         addFriend = findViewById(R.id.btn_add_friend);
 
-        mDb = FirebaseDatabase.getInstance().getReference("Masters").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("friends");
+        mDb = FirebaseDatabase.getInstance().getReference("Masters").child(Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid()).child("friends");
         uid.setText(FirebaseAuth.getInstance().getCurrentUser().getUid());
 
         addFriend.setOnClickListener(new View.OnClickListener() {
@@ -58,7 +58,7 @@ public class AddFriend extends AppCompatActivity {
 
         dataQuery.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if (dataSnapshot.exists()) {
                     mDb.push().setValue(friend.getText().toString());
                 }
@@ -68,7 +68,7 @@ public class AddFriend extends AppCompatActivity {
             }
 
             @Override
-            public void onCancelled(DatabaseError databaseError) {
+            public void onCancelled(@NonNull DatabaseError databaseError) {
             }
         });
 

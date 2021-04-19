@@ -1,9 +1,7 @@
-package com.example.mymaster;
+package com.example.mymaster.Myprofile;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.cardview.widget.CardView;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -11,17 +9,16 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.example.mymaster.Models.User;
+import com.example.mymaster.R;
+import com.example.mymaster.ServicesListActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
-import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import java.util.Objects;
 
-import static android.os.SystemClock.sleep;
 
 public class MyProfile extends AppCompatActivity {
     EditText firstName, secondName, phone, email, address,info;
@@ -33,7 +30,7 @@ public class MyProfile extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_profile);
 
-        mDatabase = FirebaseDatabase.getInstance().getReference("Masters");
+        mDatabase = FirebaseDatabase.getInstance().getReference("Masters").child(Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid());
 
         firstName = findViewById(R.id.mpFirstname);
         secondName = findViewById(R.id.mpName);
@@ -48,51 +45,47 @@ public class MyProfile extends AppCompatActivity {
 
         viewUserInfo();
 
+        services.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(MyProfile.this, ServicesListActivity.class));
+
+            }
+        });
+
         save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if(firstName.getText().toString().length()>1) {
-                    mDatabase.child(FirebaseAuth.getInstance().getCurrentUser().getUid())
-                            .child("first_name")
+                    mDatabase.child("first_name")
                             .setValue(firstName.getText().toString());
                 } else {
                     Toast.makeText(MyProfile.this,"Не верно введено имя",Toast.LENGTH_LONG).show();
                 }
 
-                mDatabase.child(FirebaseAuth.getInstance().getCurrentUser().getUid())
-                        .child("second_name")
+                mDatabase.child("second_name")
                         .setValue(secondName.getText().toString());
 
 
-                mDatabase.child(FirebaseAuth.getInstance().getCurrentUser().getUid())
-                        .child("phone")
+                mDatabase.child("phone")
                         .setValue(phone.getText().toString());
 
-                mDatabase.child(FirebaseAuth.getInstance().getCurrentUser().getUid())
-                        .child("address")
+                mDatabase.child("address")
                         .setValue(address.getText().toString());
 
 
-                mDatabase.child(FirebaseAuth.getInstance().getCurrentUser().getUid())
-                        .child("info")
+                mDatabase.child("info")
                         .setValue(info.getText().toString());
 
-                viewUserInfo();
-            }
-        });
-
-        services.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(MyProfile.this, ServicesActivity.class));
 
             }
         });
+
+
     }
 
     private void viewUserInfo(){
-        mDatabase.child(FirebaseAuth.getInstance().getCurrentUser().getUid())
-                .child("first_name")
+        mDatabase.child("first_name")
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
             @Override
@@ -106,8 +99,7 @@ public class MyProfile extends AppCompatActivity {
             }
         });
 
-        mDatabase.child(FirebaseAuth.getInstance().getCurrentUser().getUid())
-                .child("second_name")
+        mDatabase.child("second_name")
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
             @Override
@@ -122,8 +114,7 @@ public class MyProfile extends AppCompatActivity {
             }
         });
 
-        mDatabase.child(FirebaseAuth.getInstance().getCurrentUser().getUid())
-                .child("phone")
+        mDatabase.child("phone")
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
             @Override
@@ -138,8 +129,7 @@ public class MyProfile extends AppCompatActivity {
             }
         });
 
-        mDatabase.child(FirebaseAuth.getInstance().getCurrentUser().getUid())
-                .child("address")
+        mDatabase.child("address")
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
             @Override
@@ -154,8 +144,7 @@ public class MyProfile extends AppCompatActivity {
             }
         });
 
-        mDatabase.child(FirebaseAuth.getInstance().getCurrentUser().getUid())
-                .child("info")
+        mDatabase.child("info")
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
             @Override
@@ -172,4 +161,5 @@ public class MyProfile extends AppCompatActivity {
 
         email.setText(FirebaseAuth.getInstance().getCurrentUser().getEmail());
     }
+
 }

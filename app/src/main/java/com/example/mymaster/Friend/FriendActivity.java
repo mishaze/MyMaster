@@ -1,9 +1,10 @@
-package com.example.mymaster;
+package com.example.mymaster.Friend;
 
 import android.content.Intent;
 import android.os.Bundle;
 
-import com.example.mymaster.Models.ScheduleItem;
+import com.example.mymaster.Models.Clients;
+import com.example.mymaster.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -17,23 +18,21 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ScheduleActivity extends AppCompatActivity {
-    private final List<ScheduleItem> items = new ArrayList<>();
-    private final RecyclerView.Adapter adapter = new ScheduleAdapter(this.items);
+public class FriendActivity extends AppCompatActivity {
+    private final List<Clients> items = new ArrayList<>();
+    private final RecyclerView.Adapter adapter = new FriendActivity.FriendAdapter(this.items);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.schedule_main);
+        setContentView(R.layout.activity_friend);
 
-        this.items.add(new ScheduleItem("Миша Зусман"));
-        RecyclerView recyclerView = findViewById(R.id.sch_list);
+        RecyclerView recyclerView = findViewById(R.id.friend_list);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter);
 
-        this.items.add(new ScheduleItem("Миша Зусман"));
+        this.items.add(new Clients("Misha","Zusman","misha@mish","88945654564"));
         adapter.notifyItemInserted(this.items.size()-1);
-
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -41,15 +40,15 @@ public class ScheduleActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(ScheduleActivity.this, ScheduleSettingActivity.class));
+                startActivity(new Intent(FriendActivity.this, AddFriend.class));
             }
         });
     }
 
-    private final static class ScheduleAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
-        private final List<ScheduleItem> items;
+    private final static class FriendAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+        private final List<Clients> items;
 
-        public ScheduleAdapter(List<ScheduleItem> items) {
+        public FriendAdapter(List<Clients> items) {
             this.items = items;
         }
 
@@ -58,14 +57,20 @@ public class ScheduleActivity extends AppCompatActivity {
         public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
             return new RecyclerView.ViewHolder(
                     LayoutInflater.from(parent.getContext())
-                            .inflate(R.layout.schedule_lisr_item, parent, false)
+                            .inflate(R.layout.friend_item, parent, false)
             ) {};
         }
 
         @Override
         public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
-            TextView name = holder.itemView.findViewById(R.id.sch_item_name);
-            name.setText(String.format("%s. %s", position, this.items.get(position).getName()));
+            TextView first_name = holder.itemView.findViewById(R.id.fri_item_first_name);
+            first_name.setText(this.items.get(position).getFirst_name());
+            TextView second_name = holder.itemView.findViewById(R.id.fri_item_second_name);
+            second_name.setText(this.items.get(position).getSecond_name());
+            TextView phone = holder.itemView.findViewById(R.id.fri_item_phone);
+            phone.setText(this.items.get(position).getPhone());
+            TextView email = holder.itemView.findViewById(R.id.fri_item_email);
+            email.setText(this.items.get(position).getEmail());
         }
 
         @Override
@@ -73,8 +78,4 @@ public class ScheduleActivity extends AppCompatActivity {
             return this.items.size();
         }
     }
-
-
-    //TODO получение из базы списка записей
-
 }
