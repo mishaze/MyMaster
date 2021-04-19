@@ -1,8 +1,12 @@
 # MyMaster
 
-#TODO
+<p>
+  Приложение для самозанятых специалистов 
+</p>
+
 <ul>
- <li>Services list</li>
- <li>Clients</li>
- <li>ScheduleAdapter</li>
+ <li>Просмотр записей</li>
+ <li>Клиенты</li>
+ <li>Профиль</li>
+ <li>Настройки</li>
 </ul>
