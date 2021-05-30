@@ -1,18 +1,21 @@
 package com.example.mymaster.Models;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+
 import java.util.ArrayList;
 import java.util.Objects;
 
 public class User {
 
 
-    private String first_name ="";
-    private String second_name ="";
-    private String email ="";
-    private String phone ="";
-    private String address ="";
-    private String info ="";
+    private String first_name = "";
+    private String second_name = "";
+    private String email = "";
+    private String phone = "";
+    private String address = "";
+    private String info = "";
+    private String uid = "";
 
     ArrayList<String> friends = new ArrayList<>();
     ArrayList<String> List_services = new ArrayList<>();
@@ -35,8 +38,6 @@ public class User {
         this.phone = phone;
     }
 
-    private String
-            uid="";
 
     public String getUid() {
         return uid;
@@ -45,6 +46,7 @@ public class User {
     public void setUid(String uid) {
         this.uid = uid;
     }
+
     public String getAddress() {
         return address;
     }

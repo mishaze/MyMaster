@@ -9,14 +9,19 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.mymaster.Models.Schedule;
+import com.example.mymaster.Models.User;
 import com.example.mymaster.R;
 import com.example.mymaster.ServicesListActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
 import java.util.Objects;
 
 
@@ -30,7 +35,7 @@ public class MyProfile extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_profile);
 
-        mDatabase = FirebaseDatabase.getInstance().getReference("Masters").child(Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid());
+        mDatabase = FirebaseDatabase.getInstance().getReference("Masters").child(FirebaseAuth.getInstance().getCurrentUser().getUid());
 
         firstName = findViewById(R.id.mpFirstname);
         secondName = findViewById(R.id.mpName);
@@ -82,6 +87,7 @@ public class MyProfile extends AppCompatActivity {
         });
 
 
+
     }
 
     private void viewUserInfo(){
@@ -92,6 +98,7 @@ public class MyProfile extends AppCompatActivity {
             public void onComplete(@NonNull Task<DataSnapshot> task) {
                 if(task.isSuccessful())
                 {
+
                     firstName.setText(task.getResult()
                             .getValue()
                             .toString());

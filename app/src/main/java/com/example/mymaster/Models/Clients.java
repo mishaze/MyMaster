@@ -4,10 +4,19 @@ import java.util.Objects;
 
 public class Clients {
     private String
-            first_name = "",
-            second_name = "",
-            email = "",
-            phone = "";
+            first_name = "";
+    private String second_name = "";
+    private String email = "";
+    private String phone = "";
+    private String uid="";
+
+    public String getUid() {
+        return uid;
+    }
+
+    public void setUid(String uid) {
+        this.uid = uid;
+    }
 
     public Clients() {
     }

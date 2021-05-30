@@ -27,17 +27,19 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 
 public class ScheduleActivity extends AppCompatActivity {
-    private final List<RecordingSession> items = new ArrayList<>();
-    String name;
     static int j = 0;
+    private final List<RecordingSession> items = new ArrayList<>();
     private final RecyclerView.Adapter adapter = new ScheduleAdapter(this.items);
+    List<RecordingSession> rs = new ArrayList<>();
     DatabaseReference rsDatabase;
     DatabaseReference cDatabase;
-    List<RecordingSession> rs = new ArrayList<>();
+    String name;
 
 
     @Override
@@ -56,7 +58,6 @@ public class ScheduleActivity extends AppCompatActivity {
                 for (DataSnapshot ds : snapshot.getChildren()) {
                     rs.add(ds.getValue(RecordingSession.class));
 
-
                     Query cQuery = cDatabase.orderByChild("uid").equalTo(rs.get(i).getId_client());
                     cQuery.addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
@@ -72,7 +73,8 @@ public class ScheduleActivity extends AppCompatActivity {
                                 rs.get(j).setId_client(name);
 
                                 items.add(rs.get(j));
-                                adapter.notifyDataSetChanged();
+                                //adapter.notifyDataSetChanged();
+                                add_recyclerview();
                                 j++;
                             }
 
@@ -100,6 +102,7 @@ public class ScheduleActivity extends AppCompatActivity {
 
 
         adapter.notifyItemInserted(this.items.size() - 1);
+        add_recyclerview();
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -152,13 +155,7 @@ public class ScheduleActivity extends AppCompatActivity {
             return this.items.size();
         }
     }
-
-
-
-
-    static private String timeUnParse(String tempstr) {
-       int temp = Integer.parseInt(tempstr);
-
+    private String timeUnParse1(int temp) {
         int minute = 0;
         int hours = 0;
 
@@ -187,6 +184,70 @@ public class ScheduleActivity extends AppCompatActivity {
         return shours+":"+sminute;
     }
 
-    //TODO получение из базы данных списка записей
+    static private String timeUnParse(String tempstr) {
+        int temp = Integer.parseInt(tempstr);
 
+        int minute = 0;
+        int hours = 0;
+
+        String sminute;
+        String shours;
+
+        hours = temp / 60;
+        minute = temp - (hours * 60);
+
+        if (minute == 0) {
+            sminute = "00";
+        } else if (minute < 10) {
+            sminute = "0" + String.valueOf(minute);
+        } else {
+            sminute = String.valueOf(minute);
+        }
+
+        if (hours == 0) {
+            shours = "00";
+        } else if (hours < 10) {
+            shours = "0" + String.valueOf(hours);
+        } else {
+            shours = String.valueOf(hours);
+        }
+
+        return shours + ":" + sminute;
+    }
+
+    private void add_recyclerview() {
+        Collections.sort(items, new Comparator<RecordingSession>() {
+            @Override
+            public int compare(RecordingSession o1, RecordingSession o2) {
+                String day_01 = o1.getDate().substring(0, o1.getDate().indexOf("."));
+                String month_01 = o1.getDate().substring(o1.getDate().indexOf(".") + 1, o1.getDate().indexOf(".", 3));
+                String year_o1 = o1.getDate().substring(o1.getDate().indexOf(".", 3) + 1, o1.getDate().indexOf(".", 3) + 5);
+
+                String day_02 = o2.getDate().substring(0, o2.getDate().indexOf("."));
+                String month_02 = o2.getDate().substring(o2.getDate().indexOf(".") + 1, o2.getDate().indexOf(".", 3));
+                String year_o2 = o2.getDate().substring(o2.getDate().indexOf(".", 3) + 1, o2.getDate().indexOf(".", 3) + 5);
+
+                if (Integer.parseInt(day_01) < 10) {
+                    day_01 = "0" + day_01;
+                }
+                if (Integer.parseInt(day_02) < 10) {
+                    day_02 = "0" + day_02;
+                }
+                if (Integer.parseInt(month_01) < 10) {
+                    month_01 = "0" + month_01;
+                }
+                if (Integer.parseInt(month_02) < 10) {
+                    month_02 = "0" + month_02;
+                }
+                return (year_o1 + "." + month_01 + "." + day_01 + "." + o1.getStart_service()).compareTo((year_o2 + "." + month_02 + "." + day_02 + "." + o2.getStart_service()));
+            }
+
+            ;
+        });
+
+        adapter.notifyDataSetChanged();
+
+    }
 }
+
+

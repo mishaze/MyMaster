@@ -8,6 +8,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.mymaster.Models.Clients;
 import com.example.mymaster.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -22,7 +23,7 @@ import java.util.Objects;
 public class AddFriend extends AppCompatActivity {
 
     TextView uid;
-    EditText friend;
+    EditText email;
     Button addFriend;
 
     private DatabaseReference mDb;
@@ -33,16 +34,16 @@ public class AddFriend extends AppCompatActivity {
         setContentView(R.layout.activity_add_friend);
 
         uid = findViewById(R.id.Uid);
-        friend = findViewById(R.id.Uid_friend);
+        email = findViewById(R.id.Uid_friend);
         addFriend = findViewById(R.id.btn_add_friend);
 
         mDb = FirebaseDatabase.getInstance().getReference("Masters").child(Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid()).child("friends");
-        uid.setText(FirebaseAuth.getInstance().getCurrentUser().getUid());
+        uid.setText("Введите Email пользователя");
 
         addFriend.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (friend.getText().toString().equals(""))
+                if (email.getText().toString().equals(""))
                     return;
 
                loadData();
@@ -54,17 +55,17 @@ public class AddFriend extends AppCompatActivity {
     private void loadData () {
 
         DatabaseReference dbRef = FirebaseDatabase.getInstance().getReference("Clients");
-        Query dataQuery = dbRef.orderByChild("uid").equalTo(friend.getText().toString());
+        Query dataQuery = dbRef.orderByChild("email").equalTo(email.getText().toString());
 
         dataQuery.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                if (dataSnapshot.exists()) {
-                    mDb.push().setValue(friend.getText().toString());
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for (DataSnapshot ds : snapshot.getChildren())
+                {
+                    Clients clients = ds.getValue(Clients.class);
+                    mDb.push().setValue(clients.getUid());
                 }
-                else {
-                    Toast.makeText(AddFriend.this, "Пользователь не найден", Toast.LENGTH_LONG).show();
-                }
+
             }
 
             @Override

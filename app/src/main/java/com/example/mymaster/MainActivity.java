@@ -23,6 +23,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.rengwuxian.materialedittext.MaterialEditText;
 
+import static android.os.SystemClock.sleep;
+
 
 public class MainActivity extends AppCompatActivity {
     FirebaseAuth auth;
@@ -33,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
@@ -60,8 +63,8 @@ public class MainActivity extends AppCompatActivity {
 
     private void showSignInWindow() {
         AlertDialog.Builder dialog = new AlertDialog.Builder(this);
-        dialog.setTitle("Sign In");
-        dialog.setMessage("Input information for authentication");
+        dialog.setTitle("Войти");
+        dialog.setMessage("Введите информацию для авториции");
 
         LayoutInflater inflater = LayoutInflater.from(this);
         View activity_signin = inflater.inflate(R.layout.activity_signin, null);
@@ -70,23 +73,23 @@ public class MainActivity extends AppCompatActivity {
         final MaterialEditText email = activity_signin.findViewById(R.id.emailField);
         final MaterialEditText pass = activity_signin.findViewById(R.id.passField);
 
-        dialog.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+        dialog.setPositiveButton("Отмена", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 dialogInterface.dismiss();
             }
         });
 
-        dialog.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+        dialog.setNegativeButton("OK", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 if (TextUtils.isEmpty(email.getText().toString())) {
-                    Snackbar.make(root, "input email", Snackbar.LENGTH_SHORT).show();
+                    Snackbar.make(root, "Введите email", Snackbar.LENGTH_SHORT).show();
                     return;
                 }
 
                 if (pass.getText().toString().length() < 5) {
-                    Snackbar.make(root, "error password", Snackbar.LENGTH_SHORT).show();
+                    Snackbar.make(root, "Некоректный пароль", Snackbar.LENGTH_SHORT).show();
                     return;
                 }
 
@@ -100,7 +103,7 @@ public class MainActivity extends AppCompatActivity {
                         }).addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
-                        Snackbar.make(root, "Error" + e.getMessage(), Snackbar.LENGTH_SHORT).show();
+                        Snackbar.make(root, "Ошибка" + e.getMessage(), Snackbar.LENGTH_SHORT).show();
                     }
                 });
             }
@@ -110,8 +113,8 @@ public class MainActivity extends AppCompatActivity {
 
     private void showRegisterWindow() {
         AlertDialog.Builder dialog = new AlertDialog.Builder(this);
-        dialog.setTitle("Sign up");
-        dialog.setMessage("Input all information for registration");
+        dialog.setTitle("Регистрация");
+        dialog.setMessage("Введите информацию для регистрации");
 
         LayoutInflater inflater = LayoutInflater.from(this);
         View activity_reg = inflater.inflate(R.layout.activity_reg, null);
@@ -122,30 +125,27 @@ public class MainActivity extends AppCompatActivity {
         final MaterialEditText name = activity_reg.findViewById(R.id.nameField);
         //final MaterialEditText phone = activity_reg.findViewById(R.id.phoneField);
 
-        dialog.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+        dialog.setPositiveButton("Отмена", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 dialogInterface.dismiss();
             }
         });
 
-        dialog.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+        dialog.setNegativeButton("OK", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 if (TextUtils.isEmpty(email.getText().toString())) {
-                    Snackbar.make(root, "input email", Snackbar.LENGTH_SHORT).show();
+                    Snackbar.make(root, "Введите email", Snackbar.LENGTH_SHORT).show();
                     return;
                 }
                 if (TextUtils.isEmpty(name.getText().toString())) {
-                    Snackbar.make(root, "input name", Snackbar.LENGTH_SHORT).show();
+                    Snackbar.make(root, "Введите имя", Snackbar.LENGTH_SHORT).show();
                     return;
                 }
-                //if (TextUtils.isEmpty(phone.getText().toString())) {
-                //Snackbar.make(root, "input phone", Snackbar.LENGTH_SHORT).show();
-                // return;
-                // }
+
                 if (pass.getText().toString().length() < 5) {
-                    Snackbar.make(root, "error password", Snackbar.LENGTH_SHORT).show();
+                    Snackbar.make(root, "Некоректный пароль", Snackbar.LENGTH_SHORT).show();
                     return;
                 }
 
@@ -158,17 +158,30 @@ public class MainActivity extends AppCompatActivity {
                                 user.setEmail(email.getText().toString());
                                 user.setFirst_name(name.getText().toString());
                                 user.setUid(FirebaseAuth.getInstance().getUid());
-                                //user.setPhone(phone.getText().toString());
-                                //user.setPass(pass.getText().toString());
                                 //add in DataBase
                                 masters.child(FirebaseAuth.getInstance().getCurrentUser().getUid())
                                         .setValue(user)
                                         .addOnSuccessListener(new OnSuccessListener<Void>() {
                                             @Override
                                             public void onSuccess(Void aVoid) {
-                                                Snackbar.make(root, "User add", Snackbar.LENGTH_SHORT).show();
+                                                Snackbar.make(root, "Успешная регистрация", Snackbar.LENGTH_SHORT).show();
                                             }
                                         });
+
+                                sleep(1000);
+                                auth.signInWithEmailAndPassword(user.getEmail(), pass.getText().toString())
+                                        .addOnSuccessListener(new OnSuccessListener<AuthResult>() {
+                                            @Override
+                                            public void onSuccess(AuthResult authResult) {
+                                                startActivity(new Intent(MainActivity.this, MainMenu.class));
+                                                finish();
+                                            }
+                                        }).addOnFailureListener(new OnFailureListener() {
+                                    @Override
+                                    public void onFailure(@NonNull Exception e) {
+                                        Snackbar.make(root, "Ошибка" + e.getMessage(), Snackbar.LENGTH_SHORT).show();
+                                    }
+                                });
                             }
                         });
             }

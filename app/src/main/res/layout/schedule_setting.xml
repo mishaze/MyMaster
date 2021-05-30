@@ -7,6 +7,50 @@
     android:id="@+id/root_sch_set"
     android:padding="15dp">
 
+
+    <LinearLayout android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="5dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Расписание"
+            android:textSize="25sp"
+            android:paddingBottom="10dp"/>
+    </LinearLayout>
+
+    <LinearLayout android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="10dp">
+
+        <TextView
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:text="День недели"
+            android:textSize="20sp"/>
+
+        <TextView
+            android:layout_width="70dp"
+            android:layout_height="wrap_content"
+            android:text=" с"
+            android:textSize="20sp"/>
+        <TextView
+            android:layout_width="40dp"
+            android:layout_height="wrap_content"
+            android:text=" до"
+            android:textSize="20sp"/>
+
+        <TextView
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:text="     актив."
+            android:textSize="20sp"/>
+
+    </LinearLayout>
+
     <LinearLayout android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
@@ -216,41 +260,13 @@
 
     </LinearLayout>
 
-    <LinearLayout android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginTop="30dp">
 
-        <TextView
-            android:layout_width="100dp"
-            android:layout_height="wrap_content"
-            android:text="Период"
-            android:id="@+id/sch_data"
-            android:textSize="20sp"
-            tools:ignore="HardcodedText" />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="с 01.01.1970"
-            android:id="@+id/sch_data_from"
-            android:textSize="20sp"
-            tools:ignore="HardcodedText" />
-        <TextView
-            android:paddingStart="15sp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="до 01.01.1970"
-            android:id="@+id/sch_data_to"
-            android:textSize="20sp"
-            tools:ignore="HardcodedText,RtlSymmetry" />
-
-    </LinearLayout>
     <Button
         android:id="@+id/btn_sch_Save"
         android:layout_marginTop="50dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="SAVE"
+        android:text="Сохранить"
         android:textSize="25sp"
         android:background="@color/colorPrimary"
         android:textColor="@android:color/white"/>

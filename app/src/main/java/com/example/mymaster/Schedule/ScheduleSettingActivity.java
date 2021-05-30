@@ -76,8 +76,8 @@ public class ScheduleSettingActivity extends AppCompatActivity {
         checkBoxes.add((CheckBox) findViewById(R.id.sch_enable6));
         checkBoxes.add((CheckBox) findViewById(R.id.sch_enable7));
 
-        dateFrom = findViewById(R.id.sch_data_from);
-        dateTo = findViewById(R.id.sch_data_to);
+        //dateFrom = findViewById(R.id.sch_data_from);
+       // dateTo = findViewById(R.id.sch_data_to);
 
         mDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
             int i = 0;
@@ -100,8 +100,8 @@ public class ScheduleSettingActivity extends AppCompatActivity {
             }
         });
 
-        onClickDate(dateFrom);
-        onClickDate(dateTo);
+        //onClickDate(dateFrom);
+        //onClickDate(dateTo);
 
         for (TextView v : textViews) {
             onClickTime(v);
